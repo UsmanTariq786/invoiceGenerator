@@ -162,7 +162,8 @@ const InvoiceToki = ({invoiceData,setViewPdf}) => {
                           pb: 2,
                         }}
                         variant='body2'>
-                        {format(new Date(invoiceData.date), 'MM/dd/yyyy')}
+                        {format(new Date(invoiceData.date), 'dd/MM/yyyy')}
+                        {/* {invoiceData.date} */}
                       </Typography>
                     </Grid>
              

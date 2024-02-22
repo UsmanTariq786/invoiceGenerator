@@ -1,10 +1,9 @@
 import { Box, Button, Stack, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
-import DatePickerValue from '../../components/dateFeild';
 import AddItemModal from '../../components/AddItemModal';
 import dayjs from 'dayjs';
 import ItemsDataTable from '../../components/ItemsDataGrid';
-import InvoiceTemplate from '../../components/InvoiceTemplate';
+// import InvoiceTemplate from '../../components/InvoiceTemplate';
 import InvoiceToki from '../../components/InvoiceToki';
 
 const headingStyles = {
@@ -15,27 +14,31 @@ const headingStyles = {
   backgroundColor: '#582C4D',
   color: 'white',
 };
+function InputData() {
+    const [addItemModalFlag, setAddItemModalFlag] = useState(false);
+    const [viewPdf, setViewPdf] = useState(false);
+    const [invoiceData, setInvoiceData] = useState({
+      invoiceNo: '',
+      date: dayjs(new Date()),
+      companyName: '',
+      companyAdress: '',
+      itemDetails: [],
+    });
+  
+    function saveInvoiceData(key, value) {
+      setInvoiceData((prevData) => ({
+        ...prevData,
+        [key]: value,
+      }));
+    }
+    const handleDateChange =(e)=>{
+        // console.log(e.target.value,'fujco')
+        const value = e.target.value
+        saveInvoiceData('date',value)
 
-function InvoiceGenerator() {
-  const [addItemModalFlag, setAddItemModalFlag] = useState(false);
-  const [viewPdf, setViewPdf] = useState(false);
-  const [invoiceData, setInvoiceData] = useState({
-    invoiceNo: '',
-    date: dayjs(new Date()),
-    companyName: '',
-    companyAdress: '',
-    itemDetails: [],
-  });
-
-  function saveInvoiceData(key, value) {
-    setInvoiceData((prevData) => ({
-      ...prevData,
-      [key]: value,
-    }));
-  }
-
-  console.log('datainvoic', invoiceData);
-
+    }
+  
+    console.log('datainvoic', invoiceData);
   return (
     <>
       {viewPdf ? (
@@ -49,7 +52,8 @@ function InvoiceGenerator() {
             <Stack gap={3} direction={'row'} justifyContent={'left'} alignItems='center' sx={{ m: 5 }}>
               <TextField id='outlined-basic' label='Invoice no' variant='outlined' sx={{ width: 200 }} onChange={(e) => saveInvoiceData('invoiceNo', e.target.value)} value={invoiceData.invoiceNo} />
               <Box sx={{ width: 200 }}>
-                <DatePickerValue value={invoiceData.date} setValue={saveInvoiceData} />
+                <TextField id='outlined-basic' variant='outlined' value={invoiceData.date} onChange={handleDateChange}
+                type={"date"} />
               </Box>
             </Stack>
             <Box sx={{ ...headingStyles }}>
@@ -89,4 +93,4 @@ function InvoiceGenerator() {
   );
 }
 
-export default InvoiceGenerator;
+export default InputData

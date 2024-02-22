@@ -17,7 +17,7 @@ export default function Home() {
   const router = useRouter();
 
   const handleInvoiceClick = () => {
-    router.push('/invoiceGenerator');
+    router.push('/inputData');
   };
 
   return (
