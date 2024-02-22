@@ -11,11 +11,11 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 1000,
+  maxWidth: 1000,
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
-  p: 4,
+  px: 4,
   py:8,
 };
 
@@ -56,14 +56,15 @@ const style = {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-        <Stack direction={"row"} gap={3} sx={{width:"100%", mb:3}}>
+        <Stack direction={{xs:"column", md:"row"}} gap={3} sx={{width:"100%", mb:3}}>
         <TextField
           id="outlined-basic"
           label="Item Name/Desc"
           variant="outlined"
+          fullWidth
           multiline
           rows={3}
-          sx={{ width: 500 }}
+          sx={{ maxWidth: 500 }}
           value={itemDetails.name}
           onChange={(e)=>saveItemDetails("name",e.target.value)}
         />
@@ -71,7 +72,8 @@ const style = {
           id="outlined-basic"
           label="Quantity"
           variant="outlined"
-          sx={{ width: 150 }}
+          sx={{ width: 250 }}
+          fullWidth
           type='number'
           value={itemDetails.quantity}
           onChange={(e)=>saveItemDetails("quantity",e.target.value)}
@@ -80,7 +82,8 @@ const style = {
           id="outlined-basic"
           label="Unit Price"
           variant="outlined"
-          sx={{ width: 150 }}
+          sx={{ width: 250 }}
+          fullWidth
           value={itemDetails.unitPrice}
           type='number'
           onChange={(e)=>saveItemDetails("unitPrice",e.target.value)}
@@ -89,7 +92,8 @@ const style = {
           id="outlined-basic"
           label="Total Amount"
           variant="outlined"
-          sx={{ width: 150 }}
+          sx={{ width: 300 }}
+          fullWidth
           type='number'
           value={itemDetails.totalAmount}
           onChange={(e)=>saveItemDetails("totalAmount",e.target.value)}

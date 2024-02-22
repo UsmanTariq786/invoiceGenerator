@@ -1,10 +1,10 @@
-import { Box, Button, Stack, TextField, Typography } from '@mui/material';
-import React, { useState } from 'react';
-import AddItemModal from '../../components/AddItemModal';
-import dayjs from 'dayjs';
-import ItemsDataTable from '../../components/ItemsDataGrid';
-// import InvoiceTemplate from '../../components/InvoiceTemplate';
-import InvoiceToki from '../../components/InvoiceToki';
+import { Box, Button, Stack, TextField, Typography } from '@mui/material' 
+import React, { useState } from 'react' 
+import AddItemModal from '../../components/AddItemModal' 
+import dayjs from 'dayjs' 
+import ItemsDataTable from '../../components/ItemsDataGrid' 
+// import InvoiceTemplate from '../../components/InvoiceTemplate' 
+import InvoiceToki from '../../components/InvoiceToki' 
 
 const headingStyles = {
   display: 'flex',
@@ -13,23 +13,23 @@ const headingStyles = {
   my: 5,
   backgroundColor: '#582C4D',
   color: 'white',
-};
+} 
 function InputData() {
-    const [addItemModalFlag, setAddItemModalFlag] = useState(false);
-    const [viewPdf, setViewPdf] = useState(false);
+    const [addItemModalFlag, setAddItemModalFlag] = useState(false) 
+    const [viewPdf, setViewPdf] = useState(false) 
     const [invoiceData, setInvoiceData] = useState({
       invoiceNo: '',
       date: dayjs(new Date()),
       companyName: '',
       companyAdress: '',
       itemDetails: [],
-    });
+    }) 
   
     function saveInvoiceData(key, value) {
       setInvoiceData((prevData) => ({
         ...prevData,
         [key]: value,
-      }));
+      })) 
     }
     const handleDateChange =(e)=>{
         // console.log(e.target.value,'fujco')
@@ -38,7 +38,7 @@ function InputData() {
 
     }
   
-    console.log('datainvoic', invoiceData);
+    console.log('datainvoic', invoiceData) 
   return (
     <>
       {viewPdf ? (
@@ -49,10 +49,11 @@ function InputData() {
             <Box sx={{ ...headingStyles }}>
               <Typography sx={{ fontSize: 30 }}>General Details</Typography>
             </Box>
-            <Stack gap={3} direction={'row'} justifyContent={'left'} alignItems='center' sx={{ m: 5 }}>
+            <Stack gap={3} direction={{xs:"column",sm:"row"}} justifyContent={'left'} alignItems='left' sx={{ m: 5 }}>
               <TextField id='outlined-basic' label='Invoice no' variant='outlined' sx={{ width: 200 }} onChange={(e) => saveInvoiceData('invoiceNo', e.target.value)} value={invoiceData.invoiceNo} />
               <Box sx={{ width: 200 }}>
                 <TextField id='outlined-basic' variant='outlined' value={invoiceData.date} onChange={handleDateChange}
+                sx={{minWidth:150}}
                 type={"date"} />
               </Box>
             </Stack>
@@ -71,7 +72,7 @@ function InputData() {
               <Button
                 variant='contained'
                 onClick={() => {
-                  setAddItemModalFlag(true);
+                  setAddItemModalFlag(true) 
                 }}>
                 Add item
               </Button>
@@ -79,7 +80,7 @@ function InputData() {
                 variant='contained'
                 color='warning'
                 onClick={() => {
-                  setViewPdf(true);
+                  setViewPdf(true)
                 }}>
                 Pdf
               </Button>
@@ -90,7 +91,7 @@ function InputData() {
         </Box>
       )}
     </>
-  );
+  )
 }
 
 export default InputData
